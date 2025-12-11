@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Parâmetros</title>
+</head>
+<body>
+    <h1>Lista de Parâmetros</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome do Parâmetro</th>
+                <th>Descrição do Parâmetro</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for parametro in parametros %}
+            <tr>
+                <td>{{ parametro.nome_parametro_ipm }}</td>
+                <td>{{ parametro.desc_parametro_ipm }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">Nenhum parâmetro encontrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

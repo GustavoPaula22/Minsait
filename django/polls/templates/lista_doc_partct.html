@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relação de Documentos Participantes do Cálculo do IPM</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: auto;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            word-wrap: break-word;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .large-column {
+            min-width: 500px;
+            max-width: 700px;
+        }
+        .wide-column {
+            min-width: 200px;
+            max-width: 350px;
+        }
+        .narrow-column {
+            min-width: 50px;
+            max-width: 100px;
+        }
+        .medium-column {
+            min-width: 100px;
+            max-width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ titulo }}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th class="wide-column">Tipo de Documento</th>
+                <th class="medium-column">IE Emit</th>
+                <th class="medium-column">IE Dest</th>
+                <th class="medium-column">IE Saída</th>
+                <th class="medium-column">Cad IE Saída</th>
+                <th class="medium-column">IE Entrada</th>
+                <th class="medium-column">Cad IE Entrada</th>
+                <th class="narrow-column">Munic Gerador</th>
+                <th class="narrow-column">Munic Dest</th>
+                <th class="narrow-column">Munic Saida</th>
+                <th class="narrow-column">Munic Entrada</th>
+                <th class="wide-column">CNPJ Emit</th>
+                <th class="wide-column">CNPJ/CPF Dest</th>
+                <th class="narrow-column">Modelo Doc</th>
+                <th class="large-column">Natureza Operação</th>
+                <th class="large-column">Chave Eletrônica</th>
+                <th class="wide-column">Data Emissão</th>
+                <th class="medium-column">Tipo Operacao</th>
+                <th class="medium-column">Destino Operacao</th>
+                <th class="wide-column">Finalidade</th>
+                <th class="medium-column">Valor Doc</th>
+                <th class="medium-column">Protoc Cancel</th>
+                <th class="medium-column">ANP</th>
+                <th class="medium-column">NCM</th>
+                <th class="narrow-column">CFOP</th>
+                <th class="large-column">Item</th>
+                <th class="medium-column">Valor Bruto</th>
+                <th class="medium-column">Valor Desc</th>
+                <th class="medium-column">Valor ICMS Deson</th>
+                <th class="medium-column">Valor Subs Trib</th>
+                <th class="medium-column">Valor Monofásico</th>
+                <th class="medium-column">Valor Frete</th>
+                <th class="medium-column">Valor Seguro</th>
+                <th class="medium-column">Valor Outros</th>
+                <th class="medium-column">Valor IPI</th>
+                <th class="medium-column">Valor II</th>
+                <th class="medium-column">Valor VA</th>
+                <th class="wide-column">Apropriação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for documento in documentos %}
+            <tr>
+                <td class="wide-column">{{ documento.tipodoc }}</td>
+                <td class="medium-column">{{ documento.inscricaoemit }}</td>
+                <td class="medium-column">{{ documento.inscricaodest }}</td>
+                <td class="medium-column">{{ documento.iesaida }}</td>
+                <td class="medium-column">{{ documento.iesaidaenqdto }}</td>
+                <td class="medium-column">{{ documento.ieentrada }}</td>
+                <td class="medium-column">{{ documento.ieentradaenqdto }}</td>
+                <td class="narrow-column">{{ documento.municgerador }}</td>
+                <td class="narrow-column">{{ documento.municdestino }}</td>
+                <td class="narrow-column">{{ documento.municsaida }}</td>
+                <td class="narrow-column">{{ documento.municentrada }}</td>
+                <td class="medium-column">{{ documento.cnpjemit }}</td>
+                <td class="medium-column">{{ documento.cnpjcpfdest }}</td>
+                <td class="narrow-column">{{ documento.modelo }}</td>
+                <td class="large-column">{{ documento.natoper }}</td>
+                <td class="large-column">{{ documento.chave }}</td>
+                <td class="wide-column">{{ documento.dataemissao }}</td>
+                <td class="medium-column">{{ documento.tipooperacao }}</td>
+                <td class="wide-column">{{ documento.destinooperacao }}</td>
+                <td class="wide-column">{{ documento.finalidade }}</td>
+                <td class="medium-column">{{ documento.valordoc }}</td>
+                <td class="medium-column">{{ documento.protoccancel }}</td>
+                <td class="medium-column">{{ documento.anp }}</td>
+                <td class="medium-column">{{ documento.ncm }}</td>
+                <td class="narrow-column">{{ documento.cfop }}</td>
+                <td class="large-column">{{ documento.item }}</td>
+                <td class="medium-column">{{ documento.valbruto }}</td>
+                <td class="medium-column">{{ documento.valdesc }}</td>
+                <td class="medium-column">{{ documento.valicmsdeson }}</td>
+                <td class="medium-column">{{ documento.valsubstrib }}</td>
+                <td class="medium-column">{{ documento.valmonofasico }}</td>
+                <td class="medium-column">{{ documento.valfrete }}</td>
+                <td class="medium-column">{{ documento.valseguro }}</td>
+                <td class="medium-column">{{ documento.valoutros }}</td>
+                <td class="medium-column">{{ documento.valipi }}</td>
+                <td class="medium-column">{{ documento.valii }}</td>
+                <td class="medium-column">{{ documento.valva }}</td>
+                <td class="wide-column">{{ documento.indaprop }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td class="wide-column" colspan="36">Nenhum documento encontrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

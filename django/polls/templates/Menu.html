@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta Documentos Participantes do Cálculo do IPM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .form-container h1 {
+            text-align: center;
+        }
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            width: 150px;
+            margin-right: 10px;
+            text-align: left;
+        }
+        .form-group input {
+            width: calc(100% - 130px);
+            padding: 5px;
+        }
+        .form-group.radio-group .radio-description {
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .form-group.radio-group label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form-group.radio-group label input[type="radio"] {
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        .form-group.radio-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group-container {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Consulta Documentos</h1>
+        <form id="consultaForm" action="/polls/processa_consulta/" method="get">
+            <div class="form-group-container">
+                <div class="form-group radio-group">
+                    <label>Tipos Documento:</label>
+                    <div class="radio-description">
+                        <label>
+                            <input type="radio" name="tipo_documento" value="NFeGerada" checked> NF-e Gerada
+                        </label>
+                        <label>
+                            <input type="radio" name="tipo_documento" value="NFeRecebida"> NF-e Recebida
+                        </label>
+                        <label>
+                            <input type="radio" name="tipo_documento" value="NF3e"> NF3-e
+                        </label>
+                        <label>
+                            <input type="radio" name="tipo_documento" value="NFA"> NFA
+                        </label>
+                        <label>
+                            <input type="radio" name="tipo_documento" value="EFD"> EFD
+                        </label>
+                        <label>
+                            <input type="radio" name="tipo_documento" value="Conv115"> Conv 115
+                        </label>
+                        <label>
+                            <input type="radio" name="tipo_documento" value="BPe"> BP-e
+                        </label>
+                        <label>
+                            <input type="radio" name="tipo_documento" value="CTe"> CT-e
+                        </label>
+                        <label>
+                            <input type="radio" name="tipo_documento" value="PAT"> PAT
+                        </label>
+                        <!-- Adicione mais opções conforme necessário -->
+                    </div>
+                </div>
+                <div class="form-group radio-group">
+                    <label>Participação Cálculo:</label>
+                    <div class="radio-description">
+                        <label>
+                            <input type="radio" name="tipo_consulta" value="DocPartct" checked> Docs Participantes
+                        </label>
+                        <label>
+                            <input type="radio" name="tipo_consulta" value="DocNaoPartct"> Docs Não Participantes
+                        </label>
+                        <label>
+                            <input type="radio" name="tipo_consulta" value="ItemNaoPartct"> Itens não Participantes
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="data_inicio">Data Início:</label>
+                <input type="datetime-local" id="data_inicio" name="data_inicio" step="1">
+            </div>
+            <div class="form-group">
+                <label for="data_fim">Data Fim:</label>
+                <input type="datetime-local" id="data_fim" name="data_fim" step="1">
+            </div>
+            <div class="form-group">
+                <label for="ie_entrada">Inscrição Entrada:</label>
+                <input type="text" id="ie_entrada" name="ie_entrada">
+            </div>
+            <div class="form-group">
+                <label for="ie_saida">Inscrição Saída:</label>
+                <input type="text" id="ie_saida" name="ie_saida">
+            </div>
+            <div class="form-group">
+                <label for="chave_eletr">Chave Eletrônica:</label>
+                <input type="text" id="chave_eletr" name="chave_eletr">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Consultar">
+                <button type="button" onclick="downloadCSV()">Download CSV</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function downloadCSV() {
+            const form = document.getElementById('consultaForm');
+            const formData = new FormData(form);
+            const params = new URLSearchParams(formData);
+
+            // Redireciona para a rota que gera o CSV
+            window.location.href = `/polls/download_csv/?${params.toString()}`;
+        }
+    </script>
+</body>
+</html>

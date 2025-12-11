@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relação de Documentos Não Participantes do Cálculo do IPM</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: auto;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            word-wrap: break-word;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .large-column {
+            min-width: 500px;
+            max-width: 700px;
+        }
+        .wide-column {
+            min-width: 200px;
+            max-width: 350px;
+        }
+        .narrow-column {
+            min-width: 50px;
+            max-width: 100px;
+        }
+        .medium-column {
+            min-width: 100px;
+            max-width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ titulo }}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th class="wide-column">Tipo de Documento</th>
+                <th class="wide-column">Motivo Exclusão</th>
+                <th class="medium-column">IE Emit</th>
+                <th class="medium-column">IE Dest</th>
+                <th class="narrow-column">Munic Gerador</th>
+                <th class="narrow-column">Munic Dest</th>
+                <th class="wide-column">CNPJ Emit</th>
+                <th class="wide-column">CNPJ/CPF Dest</th>
+                <th class="narrow-column">Modelo Doc</th>
+                <th class="large-column">Natureza Operação</th>
+                <th class="large-column">Chave Eletrônica</th>
+                <th class="wide-column">Data Emissão</th>
+                <th class="medium-column">Tipo Operacao</th>
+                <th class="medium-column">Destino Operacao</th>
+                <th class="wide-column">Finalidade</th>
+                <th class="medium-column">Valor Doc</th>
+                <th class="medium-column">Protoc Cancel</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for documento in documentos %}
+            <tr>
+                <td class="wide-column">{{ documento.tipodoc }}</td>
+                <td class="wide-column">{{ documento.motivoexclusao }}</td>
+                <td class="medium-column">{{ documento.inscricaoemit }}</td>
+                <td class="medium-column">{{ documento.inscricaodest }}</td>
+                <td class="narrow-column">{{ documento.municgerador }}</td>
+                <td class="narrow-column">{{ documento.municdestino }}</td>
+                <td class="medium-column">{{ documento.cnpjemit }}</td>
+                <td class="medium-column">{{ documento.cnpjcpfdest }}</td>
+                <td class="narrow-column">{{ documento.modelo }}</td>
+                <td class="large-column">{{ documento.natoper }}</td>
+                <td class="large-column">{{ documento.chave }}</td>
+                <td class="wide-column">{{ documento.dataemissao }}</td>
+                <td class="medium-column">{{ documento.tipooperacao }}</td>
+                <td class="wide-column">{{ documento.destinooperacao }}</td>
+                <td class="wide-column">{{ documento.finalidade }}</td>
+                <td class="medium-column">{{ documento.valordoc }}</td>
+                <td class="medium-column">{{ documento.protoccancel }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td class="wide-column" colspan="36">Nenhum documento encontrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
